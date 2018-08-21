@@ -22,14 +22,12 @@ fi
 echo "HOME: $LABS_HOME"
 ################################################################################
 # Define common variable
-# directory
 BIN_DIR=${BIN_DIR:-$LABS_HOME/bin}
 MODULE_DIR=${MODULE_DIR:-$LABS_HOME/module}
 AZURE_HOME=${AZURE_HOME:-$LABS_HOME/azure}
 VAGRANT_BASE=${VAGRANT_BASE:-$LABS_HOME/vagrant}
 # SSH
 SSH_OPT=${SSH_OPT:-""}
-
 ################################################################################
 # Create server
 SERVER_TYPE="vagrant"
@@ -62,10 +60,9 @@ function create_vagrant () {
   fi
   IPS[$INDEX]=${IP}
   SSH_PORTS[$INDEX]=22 # host ssh port (2200+index is guest ssh port to host)
-#  ADMINS[$INDEX]=$(ssh ${IP} whoami)
   ADMINS[$INDEX]=root
   cd ${LABS_HOME}
-  #ssh root@${IP} "reboot"
+  ssh root@${IP} "reboot"
 }
 function create_servers () {
   setup="setup_${SERVER_TYPE}"
